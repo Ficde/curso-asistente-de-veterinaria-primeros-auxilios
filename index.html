@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Espacio de Repaso - FICDE</title>
+    <title>Espacio de Repaso - MOD Emergentología Veterinaria</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -100,6 +100,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 20px;
+            justify-content: center;
         }
 
         .block-card {
@@ -110,6 +111,8 @@
             transition: all 0.3s ease;
             position: relative;
             border: 2px solid transparent;
+            max-width: 400px;
+            margin: 0 auto;
         }
 
         .block-card:hover {
@@ -128,7 +131,14 @@
 
         .block-title { color: var(--ficde-azul-dark); font-size: 1.3rem; font-weight: 700; margin-bottom: 10px; }
 
-        .block-desc { color: var(--texto-secundario); font-size: 0.9rem; line-height: 1.5; }
+        .block-desc { 
+            color: var(--texto-secundario); 
+            font-size: 0.9rem; 
+            line-height: 1.5; 
+            word-wrap: break-word;
+            word-break: break-word;
+            overflow-wrap: break-word;
+        }
 
         .activity-screen {
             display: none;
@@ -158,6 +168,9 @@
             margin-top: 20px;
             position: relative;
             text-align: left;
+            word-wrap: break-word;
+            word-break: break-word;
+            overflow-wrap: break-word;
         }
 
         .tutor-bubble::after {
@@ -191,7 +204,14 @@
 
         .act-title { font-size: 1.8rem; color: var(--ficde-azul-dark); margin: 15px 0; font-weight: 800; }
 
-        .act-instruction { font-size: 1.1rem; color: var(--texto-secundario); margin-bottom: 30px; }
+        .act-instruction { 
+            font-size: 1.1rem; 
+            color: var(--texto-secundario); 
+            margin-bottom: 30px; 
+            word-wrap: break-word;
+            word-break: break-word;
+            overflow-wrap: break-word;
+        }
 
         .student-input {
             width: 100%;
@@ -332,33 +352,11 @@
             .fede-avatar-large { width: 80px; height: 80px; }
             .tutor-bubble::after { display: none; }
         }
-/* 🐾 HUELLAS SUAVES FICDE */
-.huella {
-    position: fixed;
-    pointer-events: none;
-    font-size: 22px;
-    opacity: 0.85;
-    z-index: 9999;
-    color: var(--ficde-naranja);
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.35));
-    animation: huellaFade 2.8s ease-out forwards;
-}
-
-@keyframes huellaFade {
-    0% {
-        transform: scale(1) translateY(0);
-        opacity: 0.85;
-    }
-    100% {
-        transform: scale(0.75) translateY(24px);
-        opacity: 0;
-    }
-}
     </style>
 </head>
 
 <body>
-    <!-- AUDIOS MP3 - Todos en la misma carpeta -->
+    <!-- AUDIOS MP3 -->
     <audio id="bgMusic" loop preload="auto">
         <source src="chill-study-desk-focus-concentration-lofi-451180.mp3" type="audio/mpeg">
     </audio>
@@ -385,7 +383,7 @@
                 <img src="logo.png" alt="FICDE" class="logo-img" onerror="this.style.display='none'; document.getElementById('altLogo').style.display='block'">
                 <h2 id="altLogo" style="display:none; color:white; font-weight:800;">FICDE</h2>
             </div>
-            <div class="module-tag">Módulo Primeros Auxilios</div>
+            <div class="module-tag">Módulo: Primeros Auxilios</div>
         </header>
 
         <div id="selectionScreen">
@@ -401,25 +399,25 @@
                 <div class="block-card" onclick="startModule('sintesis')">
                     <div class="block-icon">🧠</div>
                     <div class="block-title">Síntesis</div>
-                    <div class="block-desc">Conceptos clave de primeros auxilios, valoración inicial y seguridad en la escena.</div>
+                    <div class="block-desc">Conceptos de emergentología, evaluación clínica inicial, RCP básica y clasificación de lesiones.</div>
                 </div>
 
                 <div class="block-card" onclick="startModule('analisis')">
                     <div class="block-icon">🔍</div>
                     <div class="block-title">Análisis Crítico</div>
-                    <div class="block-desc">Priorización de emergencias, signos de gravedad y decisiones en la atención inmediata.</div>
+                    <div class="block-desc">Prevención de incidentes, interpretación de las 6 T, fallos en la termorregulación y riesgos de la automedicación.</div>
                 </div>
 
                 <div class="block-card" onclick="startModule('escenarios')">
                     <div class="block-icon">🎬</div>
                     <div class="block-title">Escenarios</div>
-                    <div class="block-desc">Casos de traumatismos, hemorragias, shock, convulsiones, golpes de calor e intoxicaciones.</div>
+                    <div class="block-desc">Gestión de la escena, RCP según tamaño, maniobra de Heimlich, politrauma y manejo de intoxicaciones.</div>
                 </div>
 
                 <div class="block-card" onclick="startModule('practica')">
                     <div class="block-icon">⚡</div>
                     <div class="block-title">Práctica</div>
-                    <div class="block-desc">Aplicación de medidas básicas: control de hemorragias, inmovilización, RCP y armado de botiquín.</div>
+                    <div class="block-desc">Cadena de vida, técnica de masaje cardíaco, vendajes, inducción del vómito y botiquín.</div>
                 </div>
             </div>
         </div>
@@ -470,7 +468,7 @@
 
         function unlockAudio() {
             if (audioUnlocked) return;
-            [clickSoundEl, successSoundEl, hoverSoundEl].forEach(a => {
+            Object.values(audioFiles).forEach(a => {
                 a.volume = 0;
                 const p = a.play();
                 if (p) p.then(() => { a.pause(); a.currentTime = 0; a.volume = 1; }).catch(()=>{});
@@ -516,596 +514,549 @@
 
         // ===== NORMALIZACIÓN DE TEXTO =====
         function normalizar(txt) {
-            return txt
-                .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-                .toLowerCase();
+            return txt.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
         }
 
-        // ===== ACTIVIDADES: MÓDULO – PRIMEROS AUXILIOS =====
-const modules = {
+        // ===== ACTIVIDADES =====
+        const modules = {
+            sintesis: [
+                {
+                    type: 'text',
+                    badge: 'Introducción al Socorro',
+                    title: 'Definición de Primeros Auxilios',
+                    instruction: 'Define los primeros auxilios y menciona hasta qué momento se deben prestar.',
+                    tutor: 'Enfócate en quién presta la ayuda y cuál es el límite de tiempo.',
+                    explanation: 'Los primeros auxilios son la asistencia inmediata, limitada y temporal prestada por un no especialista. Esta ayuda se brinda hasta que llega el servicio de emergencia veterinario.',
+                    validation: (raw) => {
+                        const v = normalizar(raw);
+                        const roots = ['asistencia', 'limitada', 'temporal'];
+                        return roots.filter(r => v.includes(r)).length >= 2;
+                    }
+                },
+                {
+                    type: 'text',
+                    badge: 'Prioridades de Atención',
+                    title: 'Diferencia entre Emergencia y Urgencia',
+                    instruction: 'Establece la diferencia principal entre una emergencia y una urgencia veterinaria.',
+                    tutor: 'Piensa en la inmediatez del riesgo vital.',
+                    explanation: 'Una emergencia es un incidente que puede llevar a la muerte de forma inmediata. En una urgencia no hay riesgo inmediato, pero sí un riesgo alejado que requiere atención pronta.',
+                    validation: (raw) => {
+                        const v = normalizar(raw);
+                        const roots = ['muerte', 'inmediata', 'alejado'];
+                        return roots.filter(r => v.includes(r)).length >= 2;
+                    }
+                },
+                {
+                    type: 'checklist',
+                    badge: 'Evaluación del Paciente',
+                    title: 'Causas de Muerte Temprana',
+                    instruction: 'Selecciona las tres causas más frecuentes de mortalidad prehospitalaria en animales.',
+                    items: [
+                        { text: 'Hemorragia', correct: true },
+                        { text: 'Insuficiencia respiratoria', correct: true },
+                        { text: 'Lesiones del sistema nervioso central', correct: true },
+                        { text: 'Fracturas de miembros', correct: false }
+                    ].sort(() => Math.random() - 0.5),
+                    tutor: 'Revisa los factores críticos que comprometen la vida en los primeros minutos.',
+                    explanation: 'Las causas más frecuentes de muerte temprana incluyen la hemorragia, la insuficiencia respiratoria y las lesiones del sistema nervioso central.'
+                },
+                {
+                    type: 'text',
+                    badge: 'Soporte Vital',
+                    title: 'Concepto de Paro Cardiorrespiratorio (PCR)',
+                    instruction: 'Define el PCR basándote en la actividad mecánica del corazón y la respiración.',
+                    tutor: 'Es un evento súbito que detiene las funciones vitales.',
+                    explanation: 'El paro cardiorrespiratorio se define como la interrupción brusca e inesperada de la respiración espontánea y la actividad mecánica del corazón. Esta situación es potencialmente reversible mediante maniobras adecuadas.',
+                    validation: (raw) => {
+                        const v = normalizar(raw);
+                        const roots = ['interrupcion', 'brusca', 'reversible'];
+                        return roots.filter(r => v.includes(r)).length >= 2;
+                    }
+                },
+                {
+                    type: 'blanks',
+                    anyOrder: true,
+                    badge: 'Signos Vitales',
+                    title: 'Frecuencia Cardíaca Normal',
+                    instruction: 'Completar los valores de frecuencia cardíaca promedio<br><br>La frecuencia cardíaca normal en animales oscila entre ______ y ______ pulsaciones por minuto.',
+                    blanks: ['60', '90'],
+                    tutor: 'El rango depende de la especie y el tamaño del animal.',
+                    explanation: 'El manual establece que la frecuencia cardíaca normal varía entre 60 y 90 pulsaciones por minuto según el tamaño y la especie.'
+                },
+                {
+                    type: 'checklist',
+                    badge: 'Causas de Paro',
+                    title: 'Las 6 H del PCR',
+                    instruction: 'Identifica cuáles de estos factores forman parte de las 6 H que causan paro cardíaco.',
+                    items: [
+                        { text: 'Hipovolemia', correct: true },
+                        { text: 'Hipoxia', correct: true },
+                        { text: 'Hipoglucemia', correct: true },
+                        { text: 'Hipertensión arterial', correct: false }
+                    ].sort(() => Math.random() - 0.5),
+                    tutor: 'La mnemotecnia ayuda a recordar desequilibrios sistémicos.',
+                    explanation: 'Dentro de las causas de paro cardiorrespiratorio, la hipovolemia, la hipoxia y la hipoglucemia forman parte del protocolo de las 6 H.'
+                },
+                {
+                    type: 'text',
+                    badge: 'Obstrucción de Vías',
+                    title: 'Definición de Asfixia Mecánica',
+                    instruction: 'Describe qué ocurre en el organismo cuando un cuerpo extraño bloquea la vía aérea.',
+                    tutor: 'Relaciona el bloqueo físico con la falta de gas vital en los pulmones.',
+                    explanation: 'La asfixia ocurre cuando un cuerpo extraño queda atorado en la garganta o vía aérea. Esto impide la llegada de oxígeno a los pulmones, provocando hipoxia o anoxia.',
+                    validation: (raw) => {
+                        const v = normalizar(raw);
+                        const roots = ['atorado', 'oxigeno', 'hipoxia'];
+                        return roots.filter(r => v.includes(r)).length >= 2;
+                    }
+                },
+                {
+                    type: 'checklist',
+                    badge: 'Lesiones Térmicas',
+                    title: 'Clasificación de Quemaduras por Profundidad',
+                    instruction: 'Selecciona los grados de profundidad en los que se categorizan las quemaduras en animales.',
+                    items: [
+                        { text: '1er Grado (Epidermis)', correct: true },
+                        { text: '2do Grado (Dermis)', correct: true },
+                        { text: '3er Grado (Tejidos profundos)', correct: true },
+                        { text: '4to Grado (Órganos internos)', correct: false }
+                    ].sort(() => Math.random() - 0.5),
+                    tutor: 'Recuerda los tres niveles principales de afectación cutánea.',
+                    explanation: 'Las quemaduras se clasifican en primer grado si afectan la epidermis, segundo grado si llegan a la dermis y tercer grado si dañan los tejidos profundos.'
+                },
+                {
+                    type: 'traffic',
+                    badge: 'Reanimación Básica',
+                    title: 'Maniobras Iniciales',
+                    instruction: 'Marca las acciones correctas para iniciar el soporte vital según la secuencia ABC.',
+                    items: [
+                        { text: 'Lo primero es asegurar que la vía aérea esté despejada (Airway).', color: 'green' },
+                        { text: 'Si no hay respiración, se debe iniciar respiración boca-nariz.', color: 'green' },
+                        { text: 'El masaje cardíaco debe ser lo último en evaluarse.', color: 'red' },
+                        { text: 'Se debe dar agua inmediatamente al animal inconsciente.', color: 'red' }
+                    ].sort(() => Math.random() - 0.5),
+                    tutor: 'Sigue el orden lógico de vida: Aire, Respiración y Circulación.',
+                    explanation: 'La reanimación básica sigue la secuencia ABC, que prioriza la vía aérea, seguida de la respiración boca-nariz y finalmente la circulación.'
+                },
+                {
+                    type: 'text',
+                    badge: 'Neurología de Emergencia',
+                    title: 'El Accidente Cerebro Vascular (ACV)',
+                    instruction: 'Explica brevemente qué provoca un ACV en un animal.',
+                    tutor: 'Es una patología arterial dentro de la cavidad craneal.',
+                    explanation: 'Un accidente cerebro vascular es provocado por la rotura o el taponamiento de una arteria en el cerebro.',
+                    validation: (raw) => {
+                        const v = normalizar(raw);
+                        const roots = ['taponamiento', 'rotura', 'arteria'];
+                        return roots.filter(r => v.includes(r)).length >= 2;
+                    }
+                }
+            ],
+            analisis: [
+                {
+                    type: 'text',
+                    badge: 'Prevención de Riesgos',
+                    title: 'Crítica al Concepto de Accidente',
+                    instruction: 'Argumenta por qué se considera inadecuado el término accidente para las lesiones no intencionales.',
+                    tutor: 'Piensa en si estos eventos se pueden evitar o son obra de la suerte.',
+                    explanation: 'La denominación accidente es inadecuada porque connota un suceso inesperado atribuido al azar e inevitable. En realidad, estos eventos tienen causas establecidas y se pueden prevenir con medidas efectivas.',
+                    validation: (raw) => {
+                        const v = normalizar(raw);
+                        const roots = ['azar', 'inevitable', 'prevencion'];
+                        return roots.filter(r => v.includes(r)).length >= 2;
+                    }
+                },
+                {
+                    type: 'text',
+                    badge: 'Diagnóstico Etiológico',
+                    title: 'El Rol de las 6 T en el Paro',
+                    instruction: 'Analiza qué representan las 6 T dentro del protocolo de RCP avanzada.',
+                    tutor: 'Son causas corregibles que deben descartarse sistemáticamente.',
+                    explanation: 'Las 6 T constituyen una mnemotecnia para identificar diversos procesos patológicos que conducen al paro cardíaco.',
+                    validation: (raw) => {
+                        const v = normalizar(raw);
+                        const roots = ['mnemotecnia', 'procesos', 'patologicos'];
+                        return roots.filter(r => v.includes(r)).length >= 2;
+                    }
+                },
+                {
+                    type: 'checklist',
+                    badge: 'Causas de PCR',
+                    title: 'Identificación de las 6 T',
+                    instruction: 'Selecciona las causas correctas que integran la lista de las T.',
+                    items: [
+                        { text: 'Tóxicos', correct: true },
+                        { text: 'Taponamiento cardíaco', correct: true },
+                        { text: 'Neumotórax a Tensión', correct: true },
+                        { text: 'Taquicardia sinusal', correct: false }
+                    ].sort(() => Math.random() - 0.5),
+                    tutor: 'Incluye también trauma y tromboembolismo.',
+                    explanation: 'El protocolo incluye causas reversibles como tóxicos, taponamiento cardíaco y neumotórax a tensión entre sus componentes.'
+                },
+                {
+                    type: 'text',
+                    badge: 'Soporte Eléctrico',
+                    title: 'Importancia de la Desfibrilación Temprana',
+                    instruction: 'Explica por qué la supervivencia disminuye drásticamente con cada minuto de retraso en la desfibrilación ante una Fibrilación Ventricular (FV).',
+                    tutor: 'La FV degenera rápidamente en un estado irreversible.',
+                    explanation: 'La desfibrilación debe ser precoz porque la probabilidad de éxito disminuye rápidamente con el paso del tiempo. La supervivencia baja aproximadamente un 5% por cada minuto que se pierde antes de realizar la descarga.',
+                    validation: (raw) => {
+                        const v = normalizar(raw);
+                        const roots = ['supervivencia', 'minuto', 'precoz'];
+                        return roots.filter(r => v.includes(r)).length >= 2;
+                    }
+                },
+                {
+                    type: 'blanks',
+                    anyOrder: true,
+                    badge: 'Fisiopatología del Calor',
+                    title: 'Límites de Temperatura en Perros',
+                    instruction: 'Completar los valores críticos de temperatura rectal para identificar el sobrecalentamiento.<br><br>Un perro se ha sobrecalentado si su temperatura es de ______ °C o más, siendo ______ °C usualmente fatal.',
+                    blanks: ['39.5', '42.8'],
+                    tutor: 'Compara el rango normal (37.5 - 39) con los puntos de quiebre térmico.',
+                    explanation: 'Se considera que un perro está sobrecalentado al alcanzar los 39.5 grados Celsius. Una temperatura de 42.8 grados Celsius se considera usualmente fatal.'
+                },
+                {
+                    type: 'text',
+                    badge: 'Riesgos de la Maniobra',
+                    title: 'Complicaciones del Masaje Cardíaco',
+                    instruction: 'Analiza qué lesiones físicas puede provocar una técnica de compresiones torácicas demasiado vigorosa.',
+                    tutor: 'Considera el daño a la estructura ósea y órganos internos como el hígado.',
+                    explanation: 'Las complicaciones del masaje cardíaco externo incluyen fracturas costales y del esternón, además de laceraciones en órganos como el hígado y el bazo.',
+                    validation: (raw) => {
+                        const v = normalizar(raw);
+                        const roots = ['fracturas', 'costales', 'laceraciones'];
+                        return roots.filter(r => v.includes(r)).length >= 2;
+                    }
+                },
+                {
+                    type: 'checklist',
+                    badge: 'Emergencia Térmica',
+                    title: 'Signos de Empeoramiento del Golpe de Calor',
+                    instruction: 'Identifica los hallazgos clínicos que indican que un golpe de calor ha pasado a una fase crítica.',
+                    items: [
+                        { text: 'Encías azules o moradas', correct: true },
+                        { text: 'Desorientación', correct: true },
+                        { text: 'Colapso o coma', correct: true },
+                        { text: 'Jadeo leve ocasional', correct: false }
+                    ].sort(() => Math.random() - 0.5),
+                    tutor: 'Busca signos de falla neurológica y falta de oxígeno severa.',
+                    explanation: 'El empeoramiento de un golpe de calor se manifiesta por encías que se vuelven azules o moradas, desorientación y colapso.'
+                },
+                {
+                    type: 'text',
+                    badge: 'Error en el Auxilio',
+                    title: 'Por qué NO dar agua en atragantamiento',
+                    instruction: 'Argumenta el peligro de intentar dar de beber a un animal que tose por un cuerpo extraño.',
+                    tutor: 'El líquido puede desplazar el objeto hacia zonas más profundas.',
+                    explanation: 'No se debe dar agua porque el cuerpo extraño podría moverse y convertir una obstrucción parcial en una total.',
+                    validation: (raw) => {
+                        const v = normalizar(raw);
+                        const roots = ['moverse', 'obstruccion', 'total'];
+                        return roots.filter(r => v.includes(r)).length >= 2;
+                    }
+                },
+                {
+                    type: 'traffic',
+                    badge: 'Toxicología Casera',
+                    title: 'Productos Peligrosos',
+                    instruction: 'Marca las afirmaciones correctas sobre sustancias tóxicas comunes en el hogar según el manual.',
+                    items: [
+                        { text: 'El chocolate puede causar convulsiones y coma en perros.', color: 'green' },
+                        { text: 'El paracetamol es seguro para los animales en dosis pequeñas.', color: 'red' },
+                        { text: 'En caso de ingestión de productos de limpieza, nunca se debe inducir el vómito.', color: 'green' },
+                        { text: 'Las plantas decorativas nunca representan un riesgo para las mascotas.', color: 'red' }
+                    ].sort(() => Math.random() - 0.5),
+                    tutor: 'Sustancias de consumo humano cotidiano pueden actuar como venenos mortales en los animales.',
+                    explanation: 'El chocolate contiene componentes tóxicos para los perros, el paracetamol provoca daños graves como la necrosis hepática y está prohibido inducir el vómito ante la ingesta de productos de limpieza para evitar quemaduras químicas adicionales en el esófago. Además, muchas plantas hogareñas son tóxicas y deben mantenerse fuera de su alcance.'
+                },
+                {
+                    type: 'text',
+                    badge: 'Sensibilidad Farmacológica',
+                    title: 'El Gen MDR-1',
+                    instruction: 'Explica la importancia de consultar al veterinario antes de medicar a razas tipo Collie o Pastor Alemán.',
+                    tutor: 'Algunas razas tienen una alteración genética que las vuelve vulnerables a ciertos fármacos.',
+                    explanation: 'Estas razas pueden poseer la mutación del gen MDR-1, lo que genera una sensibilidad extrema a diversos medicamentos.',
+                    validation: (raw) => {
+                        const v = normalizar(raw);
+                        const roots = ['mutacion', 'sensibilidad', 'medicamentos'];
+                        return roots.filter(r => v.includes(r)).length >= 2;
+                    }
+                }
+            ],
+            escenarios: [
+                {
+                    type: 'text',
+                    badge: 'Valoración de la Escena',
+                    title: 'Evaluación General del Incidente',
+                    instruction: 'Ante un animal herido, ¿qué preguntas debe hacerse el socorrista para no convertirse en una víctima más?',
+                    tutor: 'Prioriza tu seguridad antes de tocar al animal.',
+                    explanation: 'El socorrista debe evaluar si hay riesgos para sí mismo o para la víctima. Es necesario averiguar qué fue lo que pasó y si se requiere más ayuda.',
+                    validation: (raw) => {
+                        const v = normalizar(raw);
+                        const roots = ['riesgos', 'paso', 'ayuda'];
+                        return roots.filter(r => v.includes(r)).length >= 2;
+                    }
+                },
+                {
+                    type: 'traffic',
+                    badge: 'Técnica de Compresión',
+                    title: 'RCP para Animales Pequeños (menos de 15 kg)',
+                    instruction: 'Indica la frecuencia y técnica correcta para un perro pequeño o gato.',
+                    items: [
+                        { text: 'Se deben realizar 2 compresiones torácicas por segundo.', color: 'green' },
+                        { text: 'Se debe comprimir el tórax entre un 25-35% de su profundidad.', color: 'green' },
+                        { text: 'El animal debe estar de pie durante las compresiones.', color: 'red' },
+                        { text: 'Se repite el ciclo cada 5 segundos seguido de una respiración.', color: 'green' }
+                    ].sort(() => Math.random() - 0.5),
+                    tutor: 'Los animales pequeños requieren un ritmo más rápido de bombeo.',
+                    explanation: 'En animales de menos de 15 kg se aplican 2 compresiones por segundo. El ciclo consiste en 5 segundos de compresiones seguidos de una respiración.'
+                },
+                {
+                    type: 'text',
+                    badge: 'Emergencia Respiratoria',
+                    title: 'Heimlich en Animales Grandes',
+                    instruction: 'Describe la posición y técnica de desobstrucción abdominal para un animal grande consciente.',
+                    tutor: 'El auxiliador debe rodear al animal desde una posición específica.',
+                    explanation: 'El socorrista debe ubicarse detrás del animal y colocar sus manos tras el reborde costal. Luego debe realizar compresiones firmes hacia arriba y adelante.',
+                    validation: (raw) => {
+                        const v = normalizar(raw);
+                        const roots = ['detras', 'costal', 'arriba'];
+                        return roots.filter(r => v.includes(r)).length >= 2;
+                    }
+                },
+                {
+                    type: 'checklist',
+                    badge: 'Reconocimiento de Obstrucción',
+                    title: 'Signos de Asfixia Grave',
+                    instruction: 'Marca los síntomas que indican que un animal no puede respirar y requiere intervención inmediata.',
+                    items: [
+                        { text: 'Imposibilidad de vocalizar', correct: true },
+                        { text: 'Mucosas azuladas (cianosis)', correct: true },
+                        { text: 'Pérdida de conciencia', correct: true },
+                        { text: 'Estornudo frecuente', correct: false }
+                    ].sort(() => Math.random() - 0.5),
+                    tutor: 'El estornudo suele ser un intento de expulsión exitoso o parcial.',
+                    explanation: 'La asfixia grave se reconoce por la imposibilidad de vocalizar, la cianosis en las mucosas y la pérdida de conciencia.'
+                },
+                {
+                    type: 'text',
+                    badge: 'Trauma en Vía Pública',
+                    title: 'Manejo de Sospecha de Lesión Espinal',
+                    instruction: 'Describe la conducta correcta ante un perro atropellado que no se mueve.',
+                    tutor: 'Cualquier movimiento brusco puede causar discapacidad permanente.',
+                    explanation: 'No se debe intentar mover a la víctima porque podría tener una lesión en la columna vertebral. De ser necesario su desplazamiento, se debe utilizar una tabla como camilla rígida para evitar daños en la médula.',
+                    validation: (raw) => {
+                        const v = normalizar(raw);
+                        const roots = ['mover', 'columna', 'tabla'];
+                        return roots.filter(r => v.includes(r)).length >= 2;
+                    }
+                },
+                {
+                    type: 'traffic',
+                    badge: 'Urgencia por Calor',
+                    title: 'Enfriamiento Externo Correcto',
+                    instruction: 'Evalúa las acciones para bajar la temperatura de un perro con insolación.',
+                    items: [
+                        { text: 'Se debe remojar al perro completamente con agua fresca (no helada).', color: 'green' },
+                        { text: 'El uso de cubitos de hielo para lamer ayuda a bajar grados internos.', color: 'green' },
+                        { text: 'Es ideal cubrir al perro con toallas mojadas y dejarlo encerrado.', color: 'red' },
+                        { text: 'Se puede aplicar alcohol en las almohadillas de las patas.', color: 'green' }
+                    ].sort(() => Math.random() - 0.5),
+                    tutor: 'El enfriamiento debe ser progresivo para evitar convulsiones por frío extremo.',
+                    explanation: 'Remojar al animal con agua fresca y aplicar alcohol en las almohadillas son métodos efectivos. Nunca se debe cubrir al perro con toallas húmedas ni confinarlo, ya que esto atrapa el calor.'
+                },
+                {
+                    type: 'text',
+                    badge: 'Escenario de Toxicidad',
+                    title: 'Intoxicación por Monóxido de Carbono (CO)',
+                    instruction: 'Indica los pasos a seguir al encontrar un animal desvanecido en una habitación con estufas a gas.',
+                    tutor: 'El gas es inoloro y requiere aireación inmediata del espacio.',
+                    explanation: 'Se debe sacar a la víctima del lugar, apagar la fuente de combustión y ventilar el ambiente. Es obligatorio consultar al veterinario incluso si los síntomas parecen leves.',
+                    validation: (raw) => {
+                        const v = normalizar(raw);
+                        const roots = ['ventilar', 'fuente', 'veterinario'];
+                        return roots.filter(r => v.includes(r)).length >= 2;
+                    }
+                },
+                {
+                    type: 'checklist',
+                    badge: 'Crisis Epiléptica',
+                    title: 'Acciones durante una Convulsión',
+                    instruction: 'Selecciona las medidas de seguridad correctas mientras el animal está convulsionando.',
+                    items: [
+                        { text: 'Retirar objetos duros o filosos', correct: true },
+                        { text: 'Acolchar el piso si es posible', correct: true },
+                        { text: 'Introducir un objeto en la boca', correct: false },
+                        { text: 'Controlar la duración', correct: true }
+                    ].sort(() => Math.random() - 0.5),
+                    tutor: 'Nunca pongas nada en la boca; no se pueden tragar la lengua.',
+                    explanation: 'Durante una convulsión se deben retirar elementos peligrosos del entorno y acolchar superficies. No se debe poner nada en la boca del animal.'
+                },
+                {
+                    type: 'text',
+                    badge: 'Sangrado Externo',
+                    title: 'Manejo de Epistaxis',
+                    instruction: 'Explica cómo realizar la compresión manual ante un sangrado nasal.',
+                    tutor: 'Enfócate en la posición de la cabeza y dónde aplicar los dedos.',
+                    explanation: 'Se debe inclinar la cabeza del animal ligeramente hacia abajo. Luego se procede a comprimir el tabique y las alas nasales con los dedos.',
+                    validation: (raw) => {
+                        const v = normalizar(raw);
+                        const roots = ['ligeramente', 'tabique', 'comprimir'];
+                        return roots.filter(r => v.includes(r)).length >= 2;
+                    }
+                },
+                {
+                    type: 'traffic',
+                    badge: 'Identificación de ACV',
+                    title: 'Signos de Alarma Neurológica',
+                    instruction: 'Evalúa los síntomas que harían sospechar de un evento cerebrovascular.',
+                    items: [
+                        { text: 'Inclinación repentina de la cabeza.', color: 'green' },
+                        { text: 'Movimientos anormales de los ojos (nistagmo).', color: 'green' },
+                        { text: 'Pérdida de equilibrio o coordinación.', color: 'green' },
+                        { text: 'El animal recupera la consciencia en menos de 10 segundos.', color: 'red' }
+                    ].sort(() => Math.random() - 0.5),
+                    tutor: 'Los signos suelen ser repentinos y afectan el equilibrio y movimiento.',
+                    explanation: 'Los signos de un accidente cerebro vascular incluyen inclinación de la cabeza, pérdida del equilibrio y movimientos oculares anormales.'
+                }
+            ],
+            practica: [
+                {
+                    type: 'checklist',
+                    badge: 'Protocolo de Respuesta',
+                    title: 'Pasos de la Cadena de Vida',
+                    instruction: 'Identifica los tres eslabones fundamentales para asegurar la recuperación del animal.',
+                    items: [
+                        { text: 'Llamado telefónico a veterinaria', correct: true },
+                        { text: 'Conservación de la vida (primeros auxilios)', correct: true },
+                        { text: 'Traslado a centro asistencial', correct: true },
+                        { text: 'Compra de medicamentos de venta libre', correct: false }
+                    ].sort(() => Math.random() - 0.5),
+                    tutor: 'El proceso va desde la alerta hasta el tratamiento avanzado.',
+                    explanation: 'La cadena de vida se inicia con el llamado telefónico, continúa con la conservación de la vida mediante primeros auxilios y finaliza con el traslado para atención avanzada.'
+                },
+                {
+                    type: 'text',
+                    badge: 'Técnica de RCP',
+                    title: 'Localización del Punto de Compresión',
+                    instruction: 'Describe cómo utilizar el codo del animal como referencia anatómica para realizar el masaje cardíaco.',
+                    tutor: 'El codo marca la ubicación aproximada del corazón en el tórax.',
+                    explanation: 'Al flexionar el codo hacia el tórax, el punto de contacto indica la zona donde deben colocarse las manos para las compresiones.',
+                    validation: (raw) => {
+                        const v = normalizar(raw);
+                        const roots = ['flexionar', 'contacto', 'manos'];
+                        return roots.filter(r => v.includes(r)).length >= 2;
+                    }
+                },
+                {
+                    type: 'blanks',
+                    anyOrder: false,
+                    badge: 'Ritmo de Reanimación',
+                    title: 'RCP para Animales Grandes (más de 15 kg)',
+                    instruction: 'Completar los tiempos y frecuencias para el masaje en perros de gran tamaño.<br><br>Se recomienda realizar ______ compresión cardíaca por segundo, repitiendo ______ veces antes del movimiento respiratorio.',
+                    blanks: ['1', '10'],
+                    tutor: 'Es un ritmo más pausado que en perros pequeños.',
+                    explanation: 'Para animales de más de 15 kg, se realiza 1 compresión cardíaca por segundo y se repite 10 veces antes de ventilar.'
+                },
+                {
+                    type: 'traffic',
+                    badge: 'Manejo de Sujeción',
+                    title: 'Colocación de Bozal de Emergencia',
+                    instruction: 'Indica las normas de seguridad al usar bozales en animales politraumatizados.',
+                    items: [
+                        { text: 'Se debe colocar para evitar mordeduras por dolor o estrés.', color: 'green' },
+                        { text: 'El bozal debe permitir que el perro respire y jadee.', color: 'green' },
+                        { text: 'Se debe apretar al máximo para cerrar la boca totalmente.', color: 'red' },
+                        { text: 'Se pueden usar materiales suaves como vendas o gasas.', color: 'green' }
+                    ].sort(() => Math.random() - 0.5),
+                    tutor: 'La sujeción es para protección, pero no debe impedir la termorregulación.',
+                    explanation: 'El bozal es necesario para evitar mordeduras, pero debe permitir que el animal respire y jadee con normalidad.'
+                },
+                {
+                    type: 'text',
+                    badge: 'Manejo de Quemaduras',
+                    title: 'Tratamiento Inicial con Agua',
+                    instruction: 'Indica el procedimiento correcto de enfriamiento para una quemadura por fuego o líquidos calientes.',
+                    tutor: 'No uses agua helada ni hielo.',
+                    explanation: 'Se debe aplicar agua a temperatura ambiente sobre la lesión. Esto calma el dolor y evita que el daño avance en el tejido.',
+                    validation: (raw) => {
+                        const v = normalizar(raw);
+                        const roots = ['temperatura', 'ambiente', 'calma'];
+                        return roots.filter(r => v.includes(r)).length >= 2;
+                    }
+                },
+                {
+                    type: 'checklist',
+                    badge: 'Soporte Farmacológico',
+                    title: 'Vía Orotraqueal en RCP',
+                    instruction: 'Según el manual, ¿qué medicamentos pueden administrarse por vía orotraqueal si el paciente está intubado?',
+                    items: [
+                        { text: 'Lidocaína', correct: true },
+                        { text: 'Epinefrina', correct: true },
+                        { text: 'Atropina', correct: true },
+                        { text: 'Insulina', correct: false }
+                    ].sort(() => Math.random() - 0.5),
+                    tutor: 'Se debe aumentar la dosis habitual en 1.5 veces.',
+                    explanation: 'A través del tubo endotraqueal se pueden administrar fármacos como la lidocaína, la epinefrina y la atropina.'
+                },
+                {
+                    type: 'text',
+                    badge: 'Manejo de Heridas',
+                    title: 'Fractura Expuesta',
+                    instruction: 'Describe la conducta adecuada si se observa el hueso fuera de la piel tras un accidente.',
+                    tutor: 'Prioriza la limpieza y la restricción de movimiento sin tocar el hueso.',
+                    explanation: 'No se deben intentar reintroducir los fragmentos óseos. Se debe cubrir la zona con gasas limpias e inmovilizar el miembro.',
+                    validation: (raw) => {
+                        const v = normalizar(raw);
+                        const roots = ['reintroducir', 'gasas', 'inmovilizar'];
+                        return roots.filter(r => v.includes(r)).length >= 2;
+                    }
+                },
+                {
+                    type: 'traffic',
+                    badge: 'Lesión en Organos de los Sentidos',
+                    title: 'Cuerpo Extraño en Ojo',
+                    instruction: 'Evalúa los pasos correctos para tratar una partícula irritante en el ojo.',
+                    items: [
+                        { text: 'Lavar con abundante solución fisiológica o agua corriente.', color: 'green' },
+                        { text: 'Utilizar hisopos de algodón para intentar extraer el objeto.', color: 'red' },
+                        { text: 'Inclinar la cabeza hacia el lado del ojo lesionado durante el lavado.', color: 'green' },
+                        { text: 'Frotar enérgicamente el ojo para que la lágrima saque el objeto.', color: 'red' }
+                    ].sort(() => Math.random() - 0.5),
+                    tutor: 'La limpieza debe ser por arrastre suave de líquido, sin fricción física.',
+                    explanation: 'Se debe lavar el ojo con abundante agua o suero inclinando la cabeza hacia el lado afectado. Nunca se deben usar hisopos ni frotar el ojo.'
+                },
+                {
+                    type: 'text',
+                    badge: 'Primeros Auxilios en Intoxicación',
+                    title: 'Inducción del Vómito con Agua Oxigenada',
+                    instruction: 'Detalla la proporción y dosis recomendada para provocar el vómito en un perro que ingirió un fármaco recientemente.',
+                    tutor: 'Se mezcla agua oxigenada con agua de grifo.',
+                    explanation: 'Se debe mezclar 1 ml de agua oxigenada en 4 ml de agua templada por cada 10 kg de peso del animal.',
+                    validation: (raw) => {
+                        const v = normalizar(raw);
+                        const roots = ['proporcion', 'templada', 'peso'];
+                        return roots.filter(r => v.includes(r)).length >= 2;
+                    }
+                },
+                {
+                    type: 'checklist',
+                    badge: 'Equipamiento de Socorro',
+                    title: 'Elementos Esenciales del Botiquín',
+                    instruction: 'Selecciona los insumos que no deben faltar en un botiquín de primeros auxilios veterinario.',
+                    items: [
+                        { text: 'Termómetro digital', correct: true },
+                        { text: 'Solución fisiológica', correct: true },
+                        { text: 'Carbón activado', correct: true },
+                        { text: 'Acetaminofén (Paracetamol)', correct: false }
+                    ].sort(() => Math.random() - 0.5),
+                    tutor: 'El acetaminofén está expresamente prohibido por su toxicidad.',
+                    explanation: 'El botiquín básico debe incluir un termómetro digital, suero fisiológico para limpiezas y carbón activado para absorber tóxicos.'
+                }
+            ]
+        };
 
-  // ===================== SÍNTESIS =====================
-  sintesis: [
-    {
-      type: 'traffic',
-      badge: 'Conceptos',
-      title: 'Qué son los primeros auxilios',
-      instruction: 'Marca en verde las afirmaciones correctas.',
-      items: [
-        { text: 'Son las acciones inmediatas que se realizan ante una urgencia hasta la llegada del veterinario', color: 'green' },
-        { text: 'Sustituyen por completo la atención profesional', color: 'red' },
-        { text: 'Buscan preservar la vida, evitar el empeoramiento y favorecer la recuperación', color: 'green' },
-        { text: 'Pueden realizarse sin ninguna medida de seguridad para el asistente', color: 'red' }
-      ],
-      tutor: 'Pensá en primeros auxilios como un puente entre la emergencia y la atención médica completa.',
-      explanation: 'Los primeros auxilios establecen intervenciones iniciales orientadas a sostener funciones vitales y evitar daños mayores.'
-    },
-    {
-      type: 'checklist',
-      badge: 'Seguridad',
-      title: 'Seguridad en la escena',
-      instruction: 'Selecciona acciones correctas antes de acercarte al animal.',
-      items: [
-        { text: 'Evaluar si el lugar es seguro para vos y el animal', correct: true },
-        { text: 'Evitar exponerte al tráfico, electricidad u otros peligros', correct: true },
-        { text: 'Valorar si el animal puede reaccionar con miedo o agresividad', correct: true },
-        { text: 'Actuar impulsivamente sin observar el entorno', correct: false }
-      ],
-      tutor: 'Tu seguridad es la primera prioridad; sin ella no podés ayudar de forma efectiva.',
-      explanation: 'La evaluación de la escena reduce riesgos adicionales para el asistente y el paciente.'
-    },
-    {
-      type: 'traffic',
-      badge: 'Urgencia',
-      title: 'Urgencia y emergencia',
-      instruction: 'Marca en verde las afirmaciones correctas.',
-      items: [
-        { text: 'Una emergencia compromete de forma inmediata la vida del animal', color: 'green' },
-        { text: 'Una urgencia requiere atención rápida pero puede tolerar cierta demora breve', color: 'green' },
-        { text: 'Todas las situaciones son iguales en gravedad', color: 'red' },
-        { text: 'Identificar la gravedad ayuda a priorizar acciones', color: 'green' }
-      ],
-      tutor: 'Clasificar la situación te permite decidir qué hacer primero.',
-      explanation: 'Distinguir entre urgencia y emergencia orienta la secuencia de intervención.'
-    },
-    {
-      type: 'checklist',
-      badge: 'ABC',
-      title: 'Evaluación inicial (ABC)',
-      instruction: 'Selecciona los pasos básicos de la evaluación primaria.',
-      items: [
-        { text: 'A: vías aéreas permeables', correct: true },
-        { text: 'B: respiración (movimientos torácicos, flujo de aire)', correct: true },
-        { text: 'C: circulación (pulso, color de mucosas, hemorragias)', correct: true },
-        { text: 'Ignorar signos vitales y centrarse solo en heridas menores', correct: false }
-      ],
-      tutor: 'Primero asegurá vida (ABC), luego atendé lesiones menos graves.',
-      explanation: 'La secuencia ABC ayuda a detectar y tratar de inmediato problemas vitales.'
-    },
-    {
-      type: 'traffic',
-      badge: 'RCP',
-      title: 'Cuándo pensar en RCP',
-      instruction: 'Marca en verde las afirmaciones correctas.',
-      items: [
-        { text: 'Ausencia de respiración y pulso son indicaciones de RCP', color: 'green' },
-        { text: 'Un animal inconsciente pero que respira y tiene pulso no requiere RCP, sí vigilancia', color: 'green' },
-        { text: 'Siempre hay que hacer RCP aunque el animal respire normalmente', color: 'red' },
-        { text: 'La RCP combina compresiones torácicas y ventilación de rescate', color: 'green' }
-      ],
-      tutor: 'Asegurate de confirmar ausencia de respiración y circulación antes de iniciar RCP.',
-      explanation: 'La reanimación cardiopulmonar se reserva para paros respiratorios y/o cardíacos.'
-    },
-    {
-      type: 'checklist',
-      badge: 'Hemorragias',
-      title: 'Control básico de hemorragias',
-      instruction: 'Selecciona medidas correctas para controlar un sangrado externo.',
-      items: [
-        { text: 'Aplicar presión directa con gasas o paños limpios', correct: true },
-        { text: 'Elevar la zona si es posible y no hay fractura', correct: true },
-        { text: 'Usar torniquetes solo en casos muy seleccionados y bajo indicación', correct: true },
-        { text: 'Retirar constantemente el apósito para ver si sigue sangrando', correct: false }
-      ],
-      tutor: 'La presión continua y firme es tu principal herramienta en hemorragias externas.',
-      explanation: 'El control de hemorragias busca reducir la pérdida de sangre y prevenir el shock.'
-    },
-    {
-      type: 'traffic',
-      badge: 'Shock',
-      title: 'Reconocer signos de shock',
-      instruction: 'Marca en verde los signos compatibles con shock.',
-      items: [
-        { text: 'Mucosas pálidas y tiempo de relleno capilar prolongado', color: 'green' },
-        { text: 'Pulso débil y rápido', color: 'green' },
-        { text: 'Debilidad, frío en extremidades y apatía', color: 'green' },
-        { text: 'Estado totalmente normal y activo', color: 'red' }
-      ],
-      tutor: 'El shock es una emergencia vital que requiere atención inmediata.',
-      explanation: 'El shock se asocia a alteraciones circulatorias y perfusión deficiente.'
-    },
-    {
-      type: 'checklist',
-      badge: 'Trauma',
-      title: 'Traumatismos y sospecha de fractura',
-      instruction: 'Selecciona señales que pueden indicar una fractura.',
-      items: [
-        { text: 'Cojea y evita apoyar la extremidad', correct: true },
-        { text: 'Deformidad visible o ángulo anormal', correct: true },
-        { text: 'Dolor intenso a la palpación o movimiento', correct: true },
-        { text: 'Movimiento “anormal” de un segmento óseo', correct: true }
-      ],
-      tutor: 'Si sospechás una fractura, inmovilizá y evitá manipular en exceso.',
-      explanation: 'Las fracturas requieren inmovilización y evaluación veterinaria rápida.'
-    },
-    {
-      type: 'traffic',
-      badge: 'Convulsiones',
-      title: 'Convulsiones en el animal',
-      instruction: 'Marca en verde las acciones correctas durante una convulsión.',
-      items: [
-        { text: 'Alejar objetos con los que pueda golpearse', color: 'green' },
-        { text: 'Protegerlo sin sujetar fuertemente su cuerpo', color: 'green' },
-        { text: 'Introducir la mano en la boca para “sacar la lengua”', color: 'red' },
-        { text: 'Contar la duración de la convulsión y observar el comportamiento posterior', color: 'green' }
-      ],
-      tutor: 'Protegé al animal y a vos mismo; nunca pongas la mano en su boca.',
-      explanation: 'Las convulsiones requieren control del entorno y posterior valoración urgente.'
-    },
-    {
-      type: 'checklist',
-      badge: 'Golpe de calor',
-      title: 'Signos de golpe de calor',
-      instruction: 'Selecciona signos compatibles con golpe de calor en perros o gatos.',
-      items: [
-        { text: 'Jadeo intenso y respiración dificultosa', correct: true },
-        { text: 'Salivación excesiva y debilidad', correct: true },
-        { text: 'Temperatura corporal muy elevada', correct: true },
-        { text: 'Desorientación, colapso o convulsiones', correct: true }
-      ],
-      tutor: 'Recordá que braquicéfalos y animales encerrados en autos son especialmente sensibles.',
-      explanation: 'La hipertermia grave puede dañar órganos vitales en poco tiempo.'
-    }
-  ],
-
-  // ===================== ANÁLISIS CRÍTICO =====================
-  analisis: [
-    {
-      type: 'text',
-      badge: 'Prioridades',
-      title: 'Orden de actuación',
-      instruction: 'Explica por qué primero se deben asegurar funciones vitales (ABC) antes de atender otras lesiones visibles.',
-      validation: (raw) => {
-        const v = normalizar(raw);
-        return (
-          (v.includes('respir') || v.includes('via aerea') || v.includes('oxigen')) &&
-          (v.includes('circul') || v.includes('shock') || v.includes('sangre')) &&
-          (v.includes('prior') || v.includes('primero') || v.includes('vida'))
-        );
-      },
-      tutor: 'Comentá qué pasaría si se atienden primero lesiones menores y se deja de lado respiración o circulación.',
-      explanation: 'La supervivencia depende antes que nada de respiración y circulación adecuadas.'
-    },
-    {
-      type: 'checklist',
-      badge: 'Errores',
-      title: 'Errores frecuentes en primeros auxilios',
-      instruction: 'Selecciona actuaciones que representan errores a evitar.',
-      items: [
-        { text: 'Mover a un animal politraumatizado sin inmovilizar cuello y columna', correct: true },
-        { text: 'Administrar medicamentos por cuenta propia sin indicación', correct: true },
-        { text: 'Dar comida o agua a un animal inconsciente o con vómitos', correct: true },
-        { text: 'Mantener la calma y seguir un orden de actuación', correct: false }
-      ],
-      tutor: 'Muchos errores provienen de la prisa o el desconocimiento; conocerlos ayuda a evitarlos.',
-      explanation: 'Algunas acciones bienintencionadas pueden empeorar el cuadro si no se conocen sus riesgos.'
-    },
-    {
-      type: 'traffic',
-      badge: 'Transporte',
-      title: 'Traslado seguro del paciente',
-      instruction: 'Marca en verde las afirmaciones correctas.',
-      items: [
-        { text: 'Inmovilizar al animal lo mejor posible antes de trasladarlo', color: 'green' },
-        { text: 'Usar mantas, tablas o camillas improvisadas para animales grandes', color: 'green' },
-        { text: 'Levantarlo bruscamente solo por las patas', color: 'red' },
-        { text: 'Evitar movimientos bruscos de cuello y columna si se sospecha trauma', color: 'green' }
-      ],
-      tutor: 'Trasladar mal a un paciente puede agravar lesiones ocultas.',
-      explanation: 'El transporte forma parte del manejo integral del animal accidentado.'
-    },
-    {
-      type: 'checklist',
-      badge: 'Intoxicación',
-      title: 'Sospecha de intoxicación',
-      instruction: 'Selecciona datos importantes que deberías recopilar ante una posible intoxicación.',
-      items: [
-        { text: 'Qué sustancia pudo ingerir, inhalar o tocar', correct: true },
-        { text: 'Cantidad aproximada y hora de exposición', correct: true },
-        { text: 'Presencia de envases, restos o vómito', correct: true },
-        { text: 'No llevar ninguna información a la clínica', correct: false }
-      ],
-      tutor: 'Toda información sobre el tóxico ayuda a elegir el tratamiento adecuado.',
-      explanation: 'Las intoxicaciones requieren información precisa sobre agente y tiempo de exposición.'
-    },
-    {
-      type: 'traffic',
-      badge: 'Mordeduras',
-      title: 'Mordeduras y agresiones',
-      instruction: 'Marca en verde las afirmaciones correctas.',
-      items: [
-        { text: 'Una mordedura puede ocultar lesiones profundas aunque la herida sea pequeña', color: 'green' },
-        { text: 'Las heridas por mordedura suelen estar contaminadas', color: 'green' },
-        { text: 'No hace falta control veterinario si la herida es pequeña', color: 'red' },
-        { text: 'Se deben valorar riesgos de infección y, en algunas zonas, de rabia u otras zoonosis', color: 'green' }
-      ],
-      tutor: 'Las mordeduras siempre merecen atención médica, aunque parezcan menores.',
-      explanation: 'Este tipo de heridas combina daño mecánico y riesgo infeccioso elevado.'
-    },
-    {
-      type: 'checklist',
-      badge: 'Comunicación',
-      title: 'Información al veterinario',
-      instruction: 'Selecciona datos que deberías transmitir al comunicar una urgencia.',
-      items: [
-        { text: 'Tipo de accidente o problema observado', correct: true },
-        { text: 'Signos principales (respiración, sangrado, conciencia)', correct: true },
-        { text: 'Tiempo aproximado transcurrido desde el evento', correct: true },
-        { text: 'Medidas de primeros auxilios ya realizadas', correct: true }
-      ],
-      tutor: 'Una buena comunicación permite al equipo prepararse antes de la llegada del paciente.',
-      explanation: 'La información clara y ordenada mejora la respuesta de la clínica ante emergencias.'
-    },
-    {
-      type: 'traffic',
-      badge: 'Golpe de calor',
-      title: 'Enfriamiento seguro',
-      instruction: 'Ante un golpe de calor, marca en verde las acciones correctas.',
-      items: [
-        { text: 'Llevar al animal a un lugar fresco y ventilado', color: 'green' },
-        { text: 'Aplicar agua fresca (no helada) en abdomen, extremidades y almohadillas', color: 'green' },
-        { text: 'Usar hielo directamente sobre todo el cuerpo', color: 'red' },
-        { text: 'Ofrecer pequeñas cantidades de agua si está consciente y puede tragar', color: 'green' }
-      ],
-      tutor: 'El enfriamiento debe ser progresivo para no generar otros problemas.',
-      explanation: 'La corrección brusca de la temperatura también puede ser peligrosa.'
-    },
-    {
-      type: 'checklist',
-      badge: 'Convulsiones',
-      title: 'Después de la convulsión',
-      instruction: 'Selecciona acciones apropiadas una vez que termina una convulsión.',
-      items: [
-        { text: 'Mantener al animal en un lugar tranquilo y con poca estimulación', correct: true },
-        { text: 'Observar si recupera la conciencia y cómo se comporta', correct: true },
-        { text: 'Registrar duración y frecuencia de los episodios', correct: true },
-        { text: 'Ignorar el episodio si parece recuperarse', correct: false }
-      ],
-      tutor: 'El periodo posterior a la convulsión aporta pistas sobre la causa y la gravedad.',
-      explanation: 'La fase postictal es importante para la evaluación neurológica posterior.'
-    },
-    {
-      type: 'traffic',
-      badge: 'Ética',
-      title: 'Límites del asistente',
-      instruction: 'Marca en verde las afirmaciones correctas sobre el rol del asistente en emergencias.',
-      items: [
-        { text: 'Debe aplicar solo maniobras para las que está entrenado', color: 'green' },
-        { text: 'No está autorizado a reemplazar el juicio clínico del veterinario', color: 'green' },
-        { text: 'Puede improvisar tratamientos farmacológicos sin indicación', color: 'red' },
-        { text: 'Su función clave es estabilizar, registrar y comunicar', color: 'green' }
-      ],
-      tutor: 'Conocer los propios límites también es parte de un buen ejercicio profesional.',
-      explanation: 'El asistente actúa dentro de un marco de funciones definidas y supervisadas.'
-    },
-    {
-      type: 'text',
-      badge: 'Reflexión',
-      title: 'Importancia de entrenar en primeros auxilios',
-      instruction: 'Describe brevemente por qué la práctica y el entrenamiento previo son esenciales para actuar bien en una emergencia.',
-      validation: (raw) => {
-        const v = normalizar(raw);
-        return (
-          (v.includes('practic') || v.includes('entren') || v.includes('simul')) &&
-          (v.includes('rapidez') || v.includes('calma') || v.includes('confianz')) &&
-          (v.includes('erro') || v.includes('prepar') || v.includes('mejor'))
-        );
-      },
-      tutor: 'Relacioná entrenamiento con seguridad, eficacia y reducción de errores en situaciones reales.',
-      explanation: 'La respuesta en emergencias mejora notablemente con entrenamiento previo y simulaciones.'
-    }
-  ],
-
-  // ===================== ESCENARIOS =====================
-  escenarios: [
-    {
-      type: 'text',
-      badge: 'Atropello',
-      title: 'Perro atropellado',
-      instruction: 'Un perro es atropellado y queda tendido en la calle. Describe qué harías paso a paso desde que llegás a la escena hasta el traslado.',
-      validation: (raw) => {
-        const v = normalizar(raw);
-        return (
-          (v.includes('segurid') || v.includes('escena') || v.includes('entorno')) &&
-          (v.includes('abc') || v.includes('via aerea') || v.includes('respir') || v.includes('pulso')) &&
-          (v.includes('inmov') || v.includes('transport') || v.includes('traslad'))
-        );
-      },
-      tutor: 'Incluí seguridad de la escena, evaluación ABC, control de hemorragias e inmovilización básica.',
-      explanation: 'Los accidentes de tránsito combinan traumatismos múltiples y riesgo ambiental.'
-    },
-    {
-      type: 'traffic',
-      badge: 'Herida cortante',
-      title: 'Corte profundo en una pata',
-      instruction: 'Un gato se ha realizado un corte profundo con un vidrio. Marca en verde las acciones adecuadas.',
-      items: [
-        { text: 'Aplicar presión directa con un paño limpio para detener el sangrado', color: 'green' },
-        { text: 'Explorar profundamente la herida con los dedos', color: 'red' },
-        { text: 'Mantener al gato inmovilizado y calmo', color: 'green' },
-        { text: 'Trasladar al gato a la clínica con el vendaje provisional', color: 'green' }
-      ],
-      tutor: 'Tu objetivo es controlar el sangrado sin agravar la lesión.',
-      explanation: 'Las heridas profundas requieren control inicial y sutura profesional.'
-    },
-    {
-      type: 'checklist',
-      badge: 'Ahogamiento',
-      title: 'Sospecha de ahogamiento',
-      instruction: 'Un perro cae a una piscina y es rescatado inconsciente. Selecciona prioridades de actuación.',
-      items: [
-        { text: 'Asegurar la respiración y abrir la vía aérea', correct: true },
-        { text: 'Comprobar pulso y comenzar RCP si es necesario', correct: true },
-        { text: 'Evitar maniobras bruscas para “sacarle el agua”', correct: true },
-        { text: 'Trasladar pronto al veterinario aunque recupere la conciencia', correct: true }
-      ],
-      tutor: 'En ahogamiento, la hipoxia es el principal enemigo.',
-      explanation: 'La inhalación de agua puede causar complicaciones respiratorias diferidas.'
-    },
-    {
-      type: 'traffic',
-      badge: 'Intoxicación',
-      title: 'Ingesta de sustancia tóxica',
-      instruction: 'Un tutor te dice que su perro ha ingerido un producto de limpieza. Marca en verde las acciones correctas.',
-      items: [
-        { text: 'Evitar inducir el vómito sin indicación profesional', color: 'green' },
-        { text: 'Pedir foto o nombre exacto del producto', color: 'green' },
-        { text: 'Recomendar “esperar a ver qué pasa” sin consultar', color: 'red' },
-        { text: 'Indicar acudir de inmediato a la clínica con el envase del producto', color: 'green' }
-      ],
-      tutor: 'No todos los tóxicos se manejan igual; algunos son corrosivos y el vómito empeora el daño.',
-      explanation: 'La conducta ante intoxicaciones depende del tipo de producto y del tiempo transcurrido.'
-    },
-    {
-      type: 'checklist',
-      badge: 'Golpe de calor',
-      title: 'Perro encerrado en auto',
-      instruction: 'Encontrás un perro muy jadeante dentro de un auto al sol. Selecciona acciones prioritarias.',
-      items: [
-        { text: 'Contactar a la autoridad competente si el tutor no está accesible', correct: true },
-        { text: 'Intentar sacar al animal lo antes posible', correct: true },
-        { text: 'Iniciar enfriamiento progresivo y traslado urgente', correct: true },
-        { text: 'Ignorar la situación porque “es solo calor”', correct: false }
-      ],
-      tutor: 'En estos casos, cada minuto cuenta para evitar daños irreversibles.',
-      explanation: 'El golpe de calor en autos cerrados puede ser mortal en pocos minutos.'
-    },
-    {
-      type: 'traffic',
-      badge: 'Convulsiones',
-      title: 'Convulsiones en sala de espera',
-      instruction: 'Un perro comienza a convulsionar en la sala de espera. Marca en verde las acciones adecuadas.',
-      items: [
-        { text: 'Alejar a otros animales y personas', color: 'green' },
-        { text: 'Retirar objetos con los que pueda golpearse', color: 'green' },
-        { text: 'Tratar de detener la convulsión sujetando fuertemente al perro', color: 'red' },
-        { text: 'Avisar de inmediato al veterinario y cronometrar el episodio', color: 'green' }
-      ],
-      tutor: 'Tu intervención debe centrarse en seguridad y comunicación rápida.',
-      explanation: 'El entorno controlado reduce el riesgo de lesiones durante la convulsión.'
-    },
-    {
-      type: 'checklist',
-      badge: 'Hemorragia nasal',
-      title: 'Epistaxis en un perro',
-      instruction: 'Un perro presenta sangrado abundante por la nariz. Selecciona maniobras adecuadas.',
-      items: [
-        { text: 'Mantener al perro tranquilo y evitar que baje la cabeza bruscamente', correct: true },
-        { text: 'No introducir objetos ni gasas profundamente en las fosas nasales', correct: true },
-        { text: 'Limpiar suavemente la sangre externa para poder valorar el sangrado', correct: true },
-        { text: 'Consultar rápidamente si el sangrado es intenso o prolongado', correct: true }
-      ],
-      tutor: 'Las hemorragias nasales pueden ser locales o reflejar problemas sistémicos.',
-      explanation: 'La contención suave y la valoración veterinaria son claves en epistaxis importantes.'
-    },
-    {
-      type: 'traffic',
-      badge: 'Herida ocular',
-      title: 'Lesión en el ojo',
-      instruction: 'Un gato llega con un ojo muy rojo, cerrado y con secreción. Marca en verde las acciones correctas.',
-      items: [
-        { text: 'Evitar frotar o manipular el ojo', color: 'green' },
-        { text: 'Colocar un collar isabelino si se lo toca constantemente', color: 'green' },
-        { text: 'Aplicar colirios por cuenta propia sin indicación', color: 'red' },
-        { text: 'Trasladar pronto al veterinario para evaluación', color: 'green' }
-      ],
-      tutor: 'Los ojos son estructuras muy delicadas; cualquier demora puede afectar la visión.',
-      explanation: 'Las lesiones oculares son siempre situaciones delicadas que requieren revisión rápida.'
-    },
-    {
-      type: 'checklist',
-      badge: 'Mordedura de otro animal',
-      title: 'Pelea entre perros',
-      instruction: 'Dos perros se pelean y uno queda con varias heridas. Selecciona pasos lógicos.',
-      items: [
-        { text: 'Separar a los animales de forma segura evitando nuevas mordeduras', correct: true },
-        { text: 'Valorar respiración, estado general y posibles heridas ocultas', correct: true },
-        { text: 'Limpiar superficialmente las heridas y cubrirlas de forma provisional', correct: true },
-        { text: 'Acudir a la clínica para evaluación y profilaxis adecuada', correct: true }
-      ],
-      tutor: 'Las heridas por mordedura pueden ser más graves de lo que aparentan.',
-      explanation: 'Además del daño local, hay riesgo de infección y lesiones internas.'
-    },
-    {
-      type: 'traffic',
-      badge: 'Tutor',
-      title: 'Contener al tutor en crisis',
-      instruction: 'En una emergencia, el tutor del animal está muy alterado. Marca en verde actitudes adecuadas.',
-      items: [
-        { text: 'Hablar con calma y explicar que se están tomando medidas', color: 'green' },
-        { text: 'Pedir colaboración (por ejemplo, datos del animal) si es posible', color: 'green' },
-        { text: 'Discutir o culparlo en ese momento', color: 'red' },
-        { text: 'Pedirle que espere en una zona segura mientras se atiende al animal', color: 'green' }
-      ],
-      tutor: 'Contener al tutor ayuda a trabajar mejor y evita interferencias en la atención.',
-      explanation: 'La comunicación y el manejo emocional forman parte del trabajo en emergencias.'
-    }
-  ],
-
-  // ===================== PRÁCTICA =====================
-  practica: [
-    {
-      type: 'checklist',
-      badge: 'Botiquín',
-      title: 'Botiquín básico veterinario',
-      instruction: 'Selecciona elementos que no deberían faltar en un botiquín de primeros auxilios.',
-      items: [
-        { text: 'Gasas estériles y vendas', correct: true },
-        { text: 'Esparadrapo o cinta adhesiva hipoalergénica', correct: true },
-        { text: 'Guantes descartables', correct: true },
-        { text: 'Termómetro, tijeras y bozal o lazo de contención', correct: true }
-      ],
-      tutor: 'Un botiquín bien armado facilita respuestas rápidas y ordenadas.',
-      explanation: 'El material básico permite cubrir urgencias hasta la llegada al centro veterinario.'
-    },
-    {
-      type: 'traffic',
-      badge: 'Organización',
-      title: 'Checklist de guardia',
-      instruction: 'Marca en verde buenas prácticas antes de comenzar una guardia.',
-      items: [
-        { text: 'Revisar que el material de primeros auxilios esté completo', color: 'green' },
-        { text: 'Verificar funcionamiento de equipos básicos (oxígeno, linternas, etc.)', color: 'green' },
-        { text: 'Esperar a revisar solo cuando ocurra una emergencia', color: 'red' },
-        { text: 'Asegurar que se dispone de números de contacto de emergencia', color: 'green' }
-      ],
-      tutor: 'La preparación previa ahorra tiempo crítico durante una urgencia real.',
-      explanation: 'Un entorno listo para la emergencia mejora los tiempos de respuesta.'
-    },
-    {
-      type: 'checklist',
-      badge: 'Registro',
-      title: 'Registro de incidentes',
-      instruction: 'Selecciona información que deberías registrar luego de cada emergencia.',
-      items: [
-        { text: 'Fecha y hora del evento', correct: true },
-        { text: 'Tipo de situación y signos observados', correct: true },
-        { text: 'Medidas de primeros auxilios aplicadas', correct: true },
-        { text: 'Evolución hasta la llegada o la derivación', correct: true }
-      ],
-      tutor: 'Cada registro sirve para aprender, auditar y mejorar protocolos.',
-      explanation: 'La documentación de urgencias permite análisis y mejoras posteriores.'
-    },
-    {
-      type: 'traffic',
-      badge: 'Autoevaluación',
-      title: 'Repaso de señales de alarma',
-      instruction: 'Marca en verde los casos que deben considerarse siempre de alarma.',
-      items: [
-        { text: 'Dificultad respiratoria o respiración ruidosa', color: 'green' },
-        { text: 'Convulsiones, desmayos o pérdida de conciencia', color: 'green' },
-        { text: 'Hemorragias abundantes o persistentes', color: 'green' },
-        { text: 'Pequeñas heridas superficiales sin otros signos', color: 'red' }
-      ],
-      tutor: 'Tené esta lista mentalmente presente durante tu trabajo diario.',
-      explanation: 'Reconocer rápidamente los cuadros graves mejora la supervivencia.'
-    },
-    {
-      type: 'checklist',
-      badge: 'Simulacros',
-      title: 'Simulacros de emergencia',
-      instruction: 'Selecciona actividades útiles para entrenarte en primeros auxilios.',
-      items: [
-        { text: 'Practicar RCP básica con maniquíes o modelos', correct: true },
-        { text: 'Simular escenarios de hemorragias y vendajes', correct: true },
-        { text: 'Ensayar protocolos de comunicación y traslado', correct: true },
-        { text: 'Esperar a aprender solo en emergencias reales', correct: false }
-      ],
-      tutor: 'Los simulacros te permiten equivocarte sin riesgo y aprender de esos errores.',
-      explanation: 'La práctica controlada mejora la respuesta en situaciones reales de estrés.'
-    },
-    {
-      type: 'traffic',
-      badge: 'Actualización',
-      title: 'Mantenerse actualizado',
-      instruction: 'Marca en verde acciones que ayudan a mantener tus conocimientos al día.',
-      items: [
-        { text: 'Participar en cursos y talleres de primeros auxilios', color: 'green' },
-        { text: 'Revisar periódicamente protocolos internos de la clínica', color: 'green' },
-        { text: 'Confiar solo en lo aprendido hace muchos años', color: 'red' },
-        { text: 'Leer material actualizado y guías de emergencia', color: 'green' }
-      ],
-      tutor: 'Los criterios en emergencias evolucionan; tus prácticas también deberían hacerlo.',
-      explanation: 'La formación continua es esencial en áreas críticas como los primeros auxilios.'
-    },
-    {
-      type: 'checklist',
-      badge: 'Tutor',
-      title: 'Educación al tutor',
-      instruction: 'Selecciona temas que podés enseñar a los tutores sobre prevención.',
-      items: [
-        { text: 'Riesgos de calor extremo y encierro en autos', correct: true },
-        { text: 'Peligros de ciertos alimentos y productos caseros', correct: true },
-        { text: 'Importancia de la correa y transportines seguros', correct: true },
-        { text: 'Cuándo acudir rápidamente a la clínica', correct: true }
-      ],
-      tutor: 'La prevención empieza muchas veces en el hogar del animal.',
-      explanation: 'Educar al tutor reduce la frecuencia de emergencias evitables.'
-    },
-    {
-      type: 'traffic',
-      badge: 'Auto-cuidado',
-      title: 'Cuidado del asistente',
-      instruction: 'Marca en verde prácticas que cuidan tu salud al atender emergencias.',
-      items: [
-        { text: 'Usar guantes y protección cuando haya sangre o fluidos', color: 'green' },
-        { text: 'Evitar levantar pesos excesivos sin ayuda', color: 'green' },
-        { text: 'Ignorar el propio cansancio o lesiones', color: 'red' },
-        { text: 'Pedir apoyo cuando la situación supera tus capacidades', color: 'green' }
-      ],
-      tutor: 'Cuidarte a vos mismo es también una responsabilidad profesional.',
-      explanation: 'El desgaste físico y emocional en emergencias debe prevenirse activamente.'
-    },
-    {
-      type: 'checklist',
-      badge: 'Resumen',
-      title: 'Resumen práctico',
-      instruction: 'Selecciona ideas clave que deberías recordar siempre.',
-      items: [
-        { text: 'Primero la seguridad, luego el ABC', correct: true },
-        { text: 'Mantener la calma y seguir un orden', correct: true },
-        { text: 'No improvisar tratamientos que desconocés', correct: true },
-        { text: 'Registrar y comunicar todo lo realizado', correct: true }
-      ],
-      tutor: 'Convertí estas ideas en tu “mantra” en cualquier emergencia.',
-      explanation: 'Estos principios sintetizan el enfoque del trabajo en primeros auxilios.'
-    },
-    {
-      type: 'traffic',
-      badge: 'Cierre',
-      title: 'Sentido del módulo',
-      instruction: 'Marca en verde ideas que resumen el propósito de aprender primeros auxilios.',
-      items: [
-        { text: 'Actuar con rapidez y criterio ante emergencias', color: 'green' },
-        { text: 'Disminuir daños mientras llega la atención veterinaria', color: 'green' },
-        { text: 'Reemplazar por completo al veterinario en el tratamiento', color: 'red' },
-        { text: 'Proteger tanto al animal como al asistente y al tutor', color: 'green' }
-      ],
-      tutor: 'Aplicá estos conocimientos cada vez que enfrentes una situación crítica.',
-      explanation: 'El módulo busca que el asistente responda de forma organizada, segura y efectiva.'
-    }
-  ]
-};
         let currentModule = '';
         let currentIndex = 0;
         let attemptCount = 0;
@@ -1237,10 +1188,27 @@ const modules = {
             } else if (data.type === 'blanks') {
                 const inputs = document.querySelectorAll('.fill-input');
                 let hits = 0;
+                let usedAnswers = [];
                 inputs.forEach(inp => {
-                    const v = normalizar(inp.value);
-                    const ans = normalizar(inp.dataset.ans);
-                    if (v.length > 1 && ans.startsWith(v.slice(0, Math.max(2, Math.min(v.length, ans.length))))) hits++;
+                    const v = normalizar(inp.value.trim());
+                    if (v.length > 0) {
+                        if (data.anyOrder) {
+                            const matchedIdx = data.blanks.findIndex((ans, idx) => {
+                                if (usedAnswers.includes(idx)) return false;
+                                const normAns = normalizar(ans.trim());
+                                return (normAns === v || (v.length > 1 && normAns.startsWith(v.slice(0, Math.max(2, Math.min(v.length, normAns.length))))));
+                            });
+                            if (matchedIdx !== -1) {
+                                hits++;
+                                usedAnswers.push(matchedIdx);
+                            }
+                        } else {
+                            const ans = normalizar(inp.dataset.ans.trim());
+                            if (ans === v || (v.length > 1 && ans.startsWith(v.slice(0, Math.max(2, Math.min(v.length, ans.length)))))) {
+                                hits++;
+                            }
+                        }
+                    }
                 });
                 isCorrect = (hits === data.blanks.length);
             } else if (data.type === 'traffic') {
@@ -1293,32 +1261,5 @@ const modules = {
             }
         }
     </script>
-<script>
-/* 🐾 HUELLAS SOLO EN PANTALLA INICIAL */
-let lastHuella = 0;
-
-document.addEventListener("mousemove", (e) => {
-    // SOLO cuando está visible la pantalla de selección
-    const inicio = document.getElementById("selectionScreen");
-    if (!inicio || inicio.style.display === "none") return;
-
-    const now = Date.now();
-    if (now - lastHuella < 140) return; // velocidad suave
-    lastHuella = now;
-
-    const huella = document.createElement("span");
-    huella.className = "huella";
-    huella.textContent = "🐾";
-
-    huella.style.left = (e.clientX + 4) + "px";
-    huella.style.top = (e.clientY + 4) + "px";
-
-    document.body.appendChild(huella);
-
-    setTimeout(() => {
-        huella.remove();
-    }, 2800);
-});
-</script>
 </body>
 </html>
