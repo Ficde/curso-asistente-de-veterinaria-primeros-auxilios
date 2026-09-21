@@ -801,16 +801,16 @@
                 {
                     type: 'traffic',
                     badge: 'Técnica de Compresión',
-                    title: 'RCP para Animales Pequeños (menos de 15 kg)',
-                    instruction: 'Indica la frecuencia y técnica correcta para un perro pequeño o gato.',
+                    title: 'RCP para Perros Pequeños y Gatos',
+                    instruction: 'Evalúa las afirmaciones sobre la RCP en felinos y caninos pequeños según las guías RECOVER:',
                     items: [
-                        { text: 'Se deben realizar 2 compresiones torácicas por segundo.', color: 'green' },
-                        { text: 'Se debe comprimir el tórax entre un 25-35% de su profundidad.', color: 'green' },
-                        { text: 'El animal debe estar de pie durante las compresiones.', color: 'red' },
-                        { text: 'Se repite el ciclo cada 5 segundos seguido de una respiración.', color: 'green' }
+                        { text: 'La frecuencia recomendada es de 100 a 120 compresiones por minuto (8 a 10 cada 5 segundos).', color: 'green' },
+                        { text: 'Se debe comprimir el tórax entre un 25% y 35% de su profundidad.', color: 'green' },
+                        { text: 'Se deben realizar compresiones abdominales en lugar de torácicas.', color: 'red' },
+                        { text: 'La técnica se adapta al tamaño envolviendo el pecho con la mano o usando una mano según la conformación del tórax.', color: 'green' }
                     ].sort(() => Math.random() - 0.5),
                     tutor: 'Los animales pequeños requieren un ritmo más rápido de bombeo.',
-                    explanation: 'En animales de menos de 15 kg se aplican 2 compresiones por segundo. El ciclo consiste en 5 segundos de compresiones seguidos de una respiración.'
+                    explanation: 'En gatos y perros pequeños se aplica una frecuencia unificada de 100 a 120 compresiones por minuto (8 a 10 cada 5 segundos), adaptando la postura de la mano al tamaño del paciente y comprimiendo entre un 25% y 35% de la profundidad del pecho.'
                 },
                 {
                     type: 'text',
@@ -953,11 +953,11 @@
                     type: 'blanks',
                     anyOrder: false,
                     badge: 'Ritmo de Reanimación',
-                    title: 'RCP para Animales Grandes (más de 15 kg)',
-                    instruction: 'Completar los tiempos y frecuencias para el masaje en perros de gran tamaño.<br><br>Se recomienda realizar ______ compresión cardíaca por segundo, repitiendo ______ veces antes del movimiento respiratorio.',
-                    blanks: ['1', '10'],
+                    title: 'Técnica de RCP para Perros Medianos y Grandes',
+                    instruction: 'Completar los valores de frecuencia y ritmo de compresión para perros medianos y grandes:<br><br>En perros medianos y grandes, se aplican compresiones con ambas manos y codos extendidos a una frecuencia de entre ___ y ___ compresiones por minuto, lo que equivale a ___ a ___ compresiones cada 5 segundos.',
+                    blanks: ['100', '120','8','10'],
                     tutor: 'Es un ritmo más pausado que en perros pequeños.',
-                    explanation: 'Para animales de más de 15 kg, se realiza 1 compresión cardíaca por segundo y se repite 10 veces antes de ventilar.'
+                    explanation: 'Para perros medianos y grandes, el auxiliador coloca una mano sobre la otra con los codos extendidos, manteniendo el ritmo unificado de 100 a 120 compresiones por minuto (8 a 10 cada 5 segundos).'
                 },
                 {
                     type: 'traffic',
